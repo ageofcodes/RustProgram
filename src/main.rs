@@ -1,14 +1,37 @@
+use std::io;
+
 fn main() {
-    println!("Hello, world!");
+    println!("Welcome!");
     //
     selector();
     
 }
 
 fn selector() {
-    fahrenheit_celcius();
-    nth_fibonacci();
-    the_twelve_days_of_xmus();
+    println!("Pick Program. Press 1 for fahrenheit_celcius, Press 2 for nth_fibonacci, Press 3 for the_twelve_days_of_xmus.");
+    
+    loop {
+        println!("Choose 1, 2 or 3 and press enter!");
+        let mut select = String::new();
+
+        io::stdin()
+            .read_line(&mut select)
+            .expect("Failed to read input.");
+
+        let select: u32 = match select.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        }; 
+
+        match select {
+            1 => fahrenheit_celcius(),
+            2 => nth_fibonacci(),
+            3 => the_twelve_days_of_xmus(),
+            _ => continue,
+        }
+
+    }
+
 }
 
 fn fahrenheit_celcius() {
